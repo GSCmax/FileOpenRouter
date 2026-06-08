@@ -46,17 +46,7 @@ namespace FileOpenRouter.Services
                         throw new SerializationException("配置内容为空或格式不正确。");
                     }
 
-                    if (config.Rules == null)
-                    {
-                        config.Rules = new System.Collections.Generic.List<RouteRule>();
-                    }
-
-                    if (config.FallbackProgram == null)
-                    {
-                        config.FallbackProgram = string.Empty;
-                    }
-
-                    return config;
+                    return ConfigValidationService.Normalize(config);
                 }
             }
             catch (Exception ex) when (ex is IOException ||
@@ -79,20 +69,7 @@ namespace FileOpenRouter.Services
         {
             EnsureConfigDirectory();
 
-            if (config == null)
-            {
-                config = new RouterConfig();
-            }
-
-            if (config.Rules == null)
-            {
-                config.Rules = new System.Collections.Generic.List<RouteRule>();
-            }
-
-            if (config.FallbackProgram == null)
-            {
-                config.FallbackProgram = string.Empty;
-            }
+            config = ConfigValidationService.Normalize(config);
 
             var serializer = new DataContractJsonSerializer(typeof(RouterConfig));
             var settings = new XmlWriterSettings

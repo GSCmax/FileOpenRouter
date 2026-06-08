@@ -73,6 +73,7 @@
     <Compile Include="Models\RouteRule.cs" />
     <Compile Include="Models\RouterConfig.cs" />
     <Compile Include="Services\ConfigService.cs" />
+    <Compile Include="Services\ConfigValidationService.cs" />
     <Compile Include="Services\RouterService.cs" />
   </ItemGroup>
   <ItemGroup>

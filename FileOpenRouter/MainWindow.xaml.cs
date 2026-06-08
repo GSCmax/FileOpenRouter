@@ -99,30 +99,18 @@ namespace FileOpenRouter
                 RulesGrid.CommitEdit();
                 RulesGrid.CommitEdit(System.Windows.Controls.DataGridEditingUnit.Row, true);
 
-                var fallbackProgram = FallbackProgramTextBox.Text.Trim();
-                if (string.IsNullOrWhiteSpace(fallbackProgram))
-                {
-                    ShowError("请先选择兜底程序。");
-                    return;
-                }
-
-                if (!File.Exists(fallbackProgram))
-                {
-                    ShowError("兜底程序不存在：" + Environment.NewLine + fallbackProgram);
-                    return;
-                }
-
-                if (!string.Equals(Path.GetExtension(fallbackProgram), ".exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    ShowError("兜底程序必须是 .exe 文件。");
-                    return;
-                }
-
                 var config = new RouterConfig
                 {
                     Rules = _rules.ToList(),
-                    FallbackProgram = fallbackProgram
+                    FallbackProgram = FallbackProgramTextBox.Text.Trim()
                 };
+
+                var validationMessage = ConfigValidationService.ValidateForSave(config);
+                if (!string.IsNullOrEmpty(validationMessage))
+                {
+                    ShowError(validationMessage);
+                    return;
+                }
 
                 ConfigService.Save(config);
                 ShowInfo("配置已保存。");

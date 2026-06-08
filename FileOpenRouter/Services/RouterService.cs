@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using FileOpenRouter.Models;
 
 namespace FileOpenRouter.Services
@@ -33,13 +34,10 @@ namespace FileOpenRouter.Services
 
             if (config.Rules != null)
             {
-                foreach (var rule in config.Rules)
+                foreach (var rule in config.Rules
+                    .Where(IsUsableRule)
+                    .OrderByDescending(rule => GetFolderMatchLength(rule.Folder)))
                 {
-                    if (!IsUsableRule(rule))
-                    {
-                        continue;
-                    }
-
                     if (IsFileUnderFolder(normalizedFilePath, rule.Folder))
                     {
                         return StartProgram(rule.Program, normalizedFilePath, rule.Name);
@@ -73,6 +71,22 @@ namespace FileOpenRouter.Services
             }
 
             return Directory.Exists(rule.Folder) && File.Exists(rule.Program);
+        }
+
+        private static int GetFolderMatchLength(string folderPath)
+        {
+            try
+            {
+                return Path.GetFullPath(folderPath)
+                    .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                    .Length;
+            }
+            catch (Exception ex) when (ex is ArgumentException ||
+                                       ex is NotSupportedException ||
+                                       ex is PathTooLongException)
+            {
+                return 0;
+            }
         }
 
         private static bool IsFileUnderFolder(string normalizedFilePath, string folderPath)

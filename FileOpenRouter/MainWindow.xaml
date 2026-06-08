@@ -23,7 +23,7 @@
                        Text="文件打开路由器" />
             <TextBlock TextWrapping="Wrap"
                        LineHeight="22">
-                <Run Text="使用技巧：先选择一个真实的兜底程序，未命中任何规则时会用它打开文件；规则按文件所在文件夹匹配，第一条命中的启用规则生效。" />
+                <Run Text="使用技巧：先选择一个真实的兜底程序，未命中任何规则时会用它打开文件；规则按文件所在文件夹匹配，路径越具体的启用规则优先。" />
                 <LineBreak />
                 <Run Text="可以复制本程序并重命名，例如 FileOpenRouter_rar_zip.exe、FileOpenRouter_pdf.exe；不同 exe 文件名会使用不同配置文件，适合分别设置为 rar+zip、pdf 等文件类型的默认打开程序。" />
             </TextBlock>
