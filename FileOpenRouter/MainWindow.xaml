@@ -103,6 +103,11 @@
             <Button MinWidth="100"
                     Margin="0,0,10,0"
                     Padding="10,5"
+                    Content="切换启用"
+                    Click="RuleEnable_Click" />
+            <Button MinWidth="100"
+                    Margin="0,0,10,0"
+                    Padding="10,5"
                     Content="选择文件夹"
                     Click="ChooseRuleFolder_Click" />
             <Button MinWidth="100"

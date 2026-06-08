@@ -49,6 +49,19 @@ namespace FileOpenRouter
             _rules.Remove(selectedRule);
         }
 
+        private void RuleEnable_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedRule = RulesGrid.SelectedItem as RouteRule;
+            if (selectedRule == null)
+            {
+                ShowInfo("请先选择一条规则。");
+                return;
+            }
+
+            selectedRule.Enabled = !selectedRule.Enabled;
+            RulesGrid.Items.Refresh();
+        }
+
         private void ChooseRuleFolder_Click(object sender, RoutedEventArgs e)
         {
             var selectedRule = RulesGrid.SelectedItem as RouteRule;
