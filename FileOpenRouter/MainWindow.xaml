@@ -5,16 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Height="500"
-        Width="900"
+        Width="1000"
+        FontSize="13"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="12">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,10">
+        <StackPanel Grid.Row="0">
+            <TextBlock FontSize="18"
+                       FontWeight="Bold"
+                       Margin="0,0,0,8"
+                       Text="文件打开路由器" />
+            <TextBlock TextWrapping="Wrap"
+                       LineHeight="22">
+                <Run Text="使用技巧：先选择一个真实的兜底程序，未命中任何规则时会用它打开文件；规则按文件所在文件夹匹配，第一条命中的启用规则生效。" />
+                <LineBreak />
+                <Run Text="可以复制本程序并重命名，例如 FileOpenRouter_rar_zip.exe、FileOpenRouter_pdf.exe；不同 exe 文件名会使用不同配置文件，适合分别设置为 rar+zip、pdf 等文件类型的默认打开程序。" />
+            </TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -36,7 +51,7 @@
         </Grid>
 
         <DataGrid x:Name="RulesGrid"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
@@ -61,7 +76,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <WrapPanel Grid.Row="2" HorizontalAlignment="Right">
+        <WrapPanel Grid.Row="3"
+                   HorizontalAlignment="Right">
             <Button MinWidth="100"
                     Margin="0,0,8,0"
                     Padding="10,5"
