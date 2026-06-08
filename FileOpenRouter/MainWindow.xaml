@@ -10,6 +10,8 @@
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <SolidColorBrush x:Key="HighLightBrush" Color="#D6E4F0"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#f8491e"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#707070"/>
     </Window.Resources>
 
     <Grid Margin="10">
@@ -26,7 +28,7 @@
             <StackPanel Margin="6,6,6,0">
                 <TextBlock FontSize="18"
                            FontWeight="Bold"
-                           Margin="0,0,0,8"
+                           Margin="0,0,0,6"
                            Text="文件打开方式路由器" />
                 <TextBlock TextWrapping="Wrap"
                            LineHeight="22">
@@ -36,7 +38,9 @@
                     <LineBreak />
                     <Run Text="3. 请将本程序设置为对应文件类型的默认打开程序，例如 .zip、.rar、.pdf 等。设置完成后，双击打开这些文件时，本程序会自动根据文件所在目录，将其转交给指定程序打开。" />
                     <LineBreak />
-                    <Run Text="4. 可以复制多份本程序并重新命名，例如 FileOpenRouter_压缩包.exe、FileOpenRouter_pdf.exe。不同名称的程序会使用不同配置文件，适合分别管理压缩包、PDF 等不同文件类型。" />
+                    <Run Text="4. 可以复制多份本程序并重新命名，例如 FileOpenRouter_压缩包.exe、FileOpenRouter_pdf.exe。不同名称的程序会使用不同配置文件，适合分别管理 压缩包、PDF 等不同文件类型。" />
+                    <LineBreak />
+                    <Run Foreground="{DynamicResource DangerBrush}" Text="5. 注意：兜底程序不要选择本程序自身，否则可能造成循环调用。"/>
                 </TextBlock>
             </StackPanel>
         </Border>
@@ -53,6 +57,7 @@
                        Text="兜底程序：" />
             <TextBox x:Name="FallbackProgramTextBox"
                      Grid.Column="1"
+                     BorderBrush="{DynamicResource BorderBrush}"
                      VerticalContentAlignment="Center" />
             <Button Grid.Column="2"
                     MinWidth="100"
@@ -64,6 +69,7 @@
 
         <DataGrid x:Name="RulesGrid"
                   Grid.Row="2"
+                  BorderBrush="{DynamicResource BorderBrush}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
