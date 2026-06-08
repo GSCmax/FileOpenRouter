@@ -8,7 +8,11 @@
         Width="1000"
         FontSize="13"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="12">
+    <Window.Resources>
+        <SolidColorBrush x:Key="HighLightBrush" Color="#D6E4F0"/>
+    </Window.Resources>
+
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -16,18 +20,22 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock FontSize="18"
-                       FontWeight="Bold"
-                       Margin="0,0,0,8"
-                       Text="文件打开路由器" />
-            <TextBlock TextWrapping="Wrap"
-                       LineHeight="22">
+        <Border Grid.Row="0"
+                Background="{DynamicResource HighLightBrush}"
+                Margin="0,0,0,10">
+            <StackPanel Margin="6,6,6,0">
+                <TextBlock FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,0,0,8"
+                           Text="文件打开路由器" />
+                <TextBlock TextWrapping="Wrap"
+                           LineHeight="22">
                 <Run Text="使用技巧：先选择一个真实的兜底程序，未命中任何规则时会用它打开文件；规则按文件所在文件夹匹配，路径越具体的启用规则优先。" />
                 <LineBreak />
                 <Run Text="可以复制本程序并重命名，例如 FileOpenRouter_rar_zip.exe、FileOpenRouter_pdf.exe；不同 exe 文件名会使用不同配置文件，适合分别设置为 rar+zip、pdf 等文件类型的默认打开程序。" />
-            </TextBlock>
-        </StackPanel>
+                </TextBlock>
+            </StackPanel>
+        </Border>
 
         <Grid Grid.Row="1" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
@@ -44,7 +52,7 @@
                      VerticalContentAlignment="Center" />
             <Button Grid.Column="2"
                     MinWidth="100"
-                    Margin="8,0,0,0"
+                    Margin="10,0,0,0"
                     Padding="10,5"
                     Content="选择程序"
                     Click="ChooseFallbackProgram_Click" />
@@ -79,22 +87,22 @@
         <WrapPanel Grid.Row="3"
                    HorizontalAlignment="Right">
             <Button MinWidth="100"
-                    Margin="0,0,8,0"
+                    Margin="0,0,10,0"
                     Padding="10,5"
                     Content="新增规则"
                     Click="AddRule_Click" />
             <Button MinWidth="100"
-                    Margin="0,0,24,0"
+                    Margin="0,0,30,0"
                     Padding="10,5"
                     Content="删除选中规则"
                     Click="DeleteSelectedRule_Click" />
             <Button MinWidth="100"
-                    Margin="0,0,8,0"
+                    Margin="0,0,10,0"
                     Padding="10,5"
                     Content="选择文件夹"
                     Click="ChooseRuleFolder_Click" />
             <Button MinWidth="100"
-                    Margin="0,0,24,0"
+                    Margin="0,0,30,0"
                     Padding="10,5"
                     Content="选择程序"
                     Click="ChooseRuleProgram_Click" />
