@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="500"
-        Width="1000"
+        Height="700"
+        Width="1120"
         FontSize="13"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -27,12 +27,16 @@
                 <TextBlock FontSize="18"
                            FontWeight="Bold"
                            Margin="0,0,0,8"
-                           Text="文件打开路由器" />
+                           Text="文件打开方式路由器" />
                 <TextBlock TextWrapping="Wrap"
                            LineHeight="22">
-                <Run Text="使用技巧：先选择一个真实的兜底程序，未命中任何规则时会用它打开文件；规则按文件所在文件夹匹配，路径越具体的启用规则优先。" />
-                <LineBreak />
-                <Run Text="可以复制本程序并重命名，例如 FileOpenRouter_rar_zip.exe、FileOpenRouter_pdf.exe；不同 exe 文件名会使用不同配置文件，适合分别设置为 rar+zip、pdf 等文件类型的默认打开程序。" />
+                    <Run Text="1. 本程序不是解压软件、阅读器或编辑器，而是“打开方式路由器”。它只负责判断文件路径，并调用你配置的外部程序。" />
+                    <LineBreak />
+                    <Run Text="2. 请先选择一个真实存在的兜底程序。当前文件未命中任何规则时，本程序会使用该兜底程序打开文件；路由规则按文件所在文件夹进行匹配；路径越具体则优先级越高。" />
+                    <LineBreak />
+                    <Run Text="3. 请将本程序设置为对应文件类型的默认打开程序，例如 .zip、.rar、.pdf 等。设置完成后，双击打开这些文件时，本程序会自动根据文件所在目录，将其转交给指定程序打开。" />
+                    <LineBreak />
+                    <Run Text="4. 可以复制多份本程序并重新命名，例如 FileOpenRouter_压缩包.exe、FileOpenRouter_pdf.exe。不同名称的程序会使用不同配置文件，适合分别管理压缩包、PDF 等不同文件类型。" />
                 </TextBlock>
             </StackPanel>
         </Border>
