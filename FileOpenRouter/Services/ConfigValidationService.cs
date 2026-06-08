@@ -1,6 +1,7 @@
 using FileOpenRouter.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -65,6 +66,11 @@ namespace FileOpenRouter.Services
                 return "兜底程序必须是 .exe 文件。";
             }
 
+            if (IsCurrentProgram(config.FallbackProgram))
+            {
+                return "兜底程序不能选择本程序自身。";
+            }
+
             foreach (var rule in config.Rules.Where(item => item != null && item.Enabled))
             {
                 var ruleName = string.IsNullOrWhiteSpace(rule.Name) ? "未命名规则" : rule.Name;
@@ -93,6 +99,11 @@ namespace FileOpenRouter.Services
                 {
                     return "启用规则的打开程序必须是 .exe 文件：" + Environment.NewLine + ruleName + Environment.NewLine + rule.Program;
                 }
+
+                if (IsCurrentProgram(rule.Program))
+                {
+                    return "启用规则的打开程序不能选择本程序自身：" + Environment.NewLine + ruleName + Environment.NewLine + rule.Program;
+                }
             }
 
             return null;
@@ -101,6 +112,22 @@ namespace FileOpenRouter.Services
         private static bool IsExeFile(string path)
         {
             return string.Equals(Path.GetExtension(path), ".exe", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsCurrentProgram(string programPath)
+        {
+            try
+            {
+                var currentProgramPath = Process.GetCurrentProcess().MainModule.FileName;
+                return string.Equals(
+                    Path.GetFullPath(programPath),
+                    Path.GetFullPath(currentProgramPath),
+                    StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

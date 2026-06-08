@@ -20,9 +20,7 @@ namespace FileOpenRouter.Services
             {
                 normalizedFilePath = Path.GetFullPath(filePath);
             }
-            catch (Exception ex) when (ex is ArgumentException ||
-                                       ex is NotSupportedException ||
-                                       ex is PathTooLongException)
+            catch (Exception ex)
             {
                 return Fail("文件路径无效：" + ex.Message);
             }
@@ -81,9 +79,7 @@ namespace FileOpenRouter.Services
                     .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
                     .Length;
             }
-            catch (Exception ex) when (ex is ArgumentException ||
-                                       ex is NotSupportedException ||
-                                       ex is PathTooLongException)
+            catch
             {
                 return 0;
             }
@@ -99,9 +95,7 @@ namespace FileOpenRouter.Services
 
                 return normalizedFilePath.StartsWith(normalizedFolder, StringComparison.OrdinalIgnoreCase);
             }
-            catch (Exception ex) when (ex is ArgumentException ||
-                                       ex is NotSupportedException ||
-                                       ex is PathTooLongException)
+            catch
             {
                 return false;
             }
