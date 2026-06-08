@@ -1,11 +1,11 @@
+using FileOpenRouter.Models;
+using FileOpenRouter.Services;
+using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using FileOpenRouter.Models;
-using FileOpenRouter.Services;
-using Microsoft.Win32;
 using WinForms = System.Windows.Forms;
 
 namespace FileOpenRouter
@@ -20,7 +20,7 @@ namespace FileOpenRouter
         public MainWindow()
         {
             InitializeComponent();
-            Title = "FileOpenRouter 配置文件 " + ConfigService.GetConfigPath();
+            Title = "文件打开路由器 " + ConfigService.GetConfigPath();
             LoadConfigToView();
         }
 
