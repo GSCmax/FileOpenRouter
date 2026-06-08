@@ -32,7 +32,7 @@ namespace FileOpenRouter.Services
             {
                 var defaultConfig = new RouterConfig();
                 Save(defaultConfig);
-                return defaultConfig;
+                return ConfigValidationService.Normalize(defaultConfig);
             }
 
             try
@@ -49,11 +49,7 @@ namespace FileOpenRouter.Services
                     return ConfigValidationService.Normalize(config);
                 }
             }
-            catch (Exception ex) when (ex is IOException ||
-                                       ex is UnauthorizedAccessException ||
-                                       ex is SerializationException ||
-                                       ex is XmlException ||
-                                       ex is ArgumentException)
+            catch (Exception ex)
             {
                 throw new InvalidOperationException(
                     "读取配置文件失败，可能是 JSON 已损坏或文件不可访问。" +
