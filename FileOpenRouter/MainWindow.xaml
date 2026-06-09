@@ -5,13 +5,281 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Height="700"
-        Width="1120"
-        FontSize="13"
+        Width="1220"
+        FontSize="14"
+        FontFamily="Microsoft YaHei UI"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        Background="{DynamicResource PageBrush}"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <SolidColorBrush x:Key="HighLightBrush" Color="#D6E4F0"/>
-        <SolidColorBrush x:Key="DangerBrush" Color="#f8491e"/>
-        <SolidColorBrush x:Key="BorderBrush" Color="#707070"/>
+        <SolidColorBrush x:Key="PageBrush" Color="#F6F8FA"/>
+        <SolidColorBrush x:Key="PanelBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="PrimaryButtonTextBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="HighLightBrush" Color="#EAF2F8"/>
+        <SolidColorBrush x:Key="HighLightBorderBrush" Color="#D8E7F3"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#2563EB"/>
+        <SolidColorBrush x:Key="AccentHoverBrush" Color="#1D4ED8"/>
+        <SolidColorBrush x:Key="AccentPressedBrush" Color="#1E40AF"/>
+        <SolidColorBrush x:Key="AccentSoftBrush" Color="#DBEAFE"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#C2410C"/>
+        <SolidColorBrush x:Key="DangerSoftBrush" Color="#FFF1F2"/>
+        <SolidColorBrush x:Key="DangerBorderBrush" Color="#FED7AA"/>
+        <SolidColorBrush x:Key="DangerPressedBrush" Color="#FFE4E6"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#1F2937"/>
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#4B5563"/>
+        <SolidColorBrush x:Key="ControlBorderBrush" Color="#D0D7DE"/>
+        <SolidColorBrush x:Key="ControlHoverBrush" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="GridHeaderBrush" Color="#F1F5F9"/>
+        <SolidColorBrush x:Key="GridAlternateRowBrush" Color="#FAFBFC"/>
+        <SolidColorBrush x:Key="GridLineBrush" Color="#E5E7EB"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ControlHoverBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.55" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryButtonTextBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentHoverBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.55" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DangerButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{DynamicResource DangerSoftBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource DangerBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource DangerPressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.55" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="TextBoxBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="{TemplateBinding Padding}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GridTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="9,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+
+        <Style x:Key="GridEditingTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="MinHeight" Value="20" />
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="Padding" Value="3,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="GridCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="RowHeight" Value="34" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource GridLineBrush}" />
+            <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource GridLineBrush}" />
+            <Setter Property="AlternatingRowBackground" Value="{DynamicResource GridAlternateRowBrush}" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGrid">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <ScrollViewer x:Name="DG_ScrollViewer"
+                                              Focusable="False">
+                                    <ScrollViewer.Template>
+                                        <ControlTemplate TargetType="ScrollViewer">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
+                                                                                Grid.Column="0" />
+                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                                        Grid.Row="1"
+                                                                        Grid.Column="0"
+                                                                        CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                                        Content="{TemplateBinding Content}"
+                                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                        ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                                                <ScrollBar x:Name="PART_VerticalScrollBar"
+                                                           Grid.Row="1"
+                                                           Grid.Column="1"
+                                                           Maximum="{TemplateBinding ScrollableHeight}"
+                                                           Orientation="Vertical"
+                                                           ViewportSize="{TemplateBinding ViewportHeight}"
+                                                           Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                           Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                                                <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                                           Grid.Row="2"
+                                                           Grid.Column="0"
+                                                           Maximum="{TemplateBinding ScrollableWidth}"
+                                                           Orientation="Horizontal"
+                                                           ViewportSize="{TemplateBinding ViewportWidth}"
+                                                           Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                           Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ScrollViewer.Template>
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </ScrollViewer>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="8"
+                                        IsHitTestVisible="False"
+                                        SnapsToDevicePixels="True" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="Background" Value="{DynamicResource GridHeaderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource GridLineBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="8,0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid Margin="10">
@@ -24,14 +292,19 @@
 
         <Border Grid.Row="0"
                 Background="{DynamicResource HighLightBrush}"
+                BorderBrush="{DynamicResource HighLightBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="8,8,8,2"
                 Margin="0,0,0,10">
-            <StackPanel Margin="6,6,6,0">
+            <StackPanel>
                 <TextBlock FontSize="18"
                            FontWeight="Bold"
-                           Margin="0,0,0,6"
+                           Margin="0,0,0,8"
                            Text="文件打开方式路由器" />
                 <TextBlock TextWrapping="Wrap"
-                           LineHeight="22">
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           LineHeight="23">
                     <Run Text="1. 本程序不是解压软件、阅读器或编辑器，而是“打开方式路由器”。它只负责判断文件路径，并调用你配置的外部程序。" />
                     <LineBreak />
                     <Run Text="2. 请先选择一个真实存在的兜底程序。当前文件未命中任何规则时，本程序会使用该兜底程序打开文件，按住 Shift键 打开文件时，也会强制使用兜底程序。" />
@@ -54,42 +327,48 @@
             <TextBlock Grid.Column="0"
                        VerticalAlignment="Center"
                        FontWeight="SemiBold"
+                       Margin="0,0,4,0"
                        Text="兜底程序：" />
             <TextBox x:Name="FallbackProgramTextBox"
                      Grid.Column="1"
-                     BorderBrush="{DynamicResource BorderBrush}"
                      VerticalContentAlignment="Center" />
             <Button Grid.Column="2"
                     MinWidth="100"
                     Margin="10,0,0,0"
-                    Padding="10,5"
                     Content="选择程序"
                     Click="ChooseFallbackProgram_Click" />
         </Grid>
 
         <DataGrid x:Name="RulesGrid"
                   Grid.Row="2"
-                  BorderBrush="{DynamicResource BorderBrush}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  HeadersVisibility="Column"
                   GridLinesVisibility="Horizontal"
                   Margin="0,0,0,10">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="启用"
-                                        Width="60"
+                                        Width="48"
+                                        CanUserResize="False"
+                                        ElementStyle="{StaticResource GridCheckBoxStyle}"
+                                        EditingElementStyle="{StaticResource GridCheckBoxStyle}"
                                         Binding="{Binding Enabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Header="规则名称"
                                     Width="150"
+                                    ElementStyle="{StaticResource GridTextBlockStyle}"
+                                    EditingElementStyle="{StaticResource GridEditingTextBoxStyle}"
                                     Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Header="文件夹路径"
                                     Width="*"
+                                    ElementStyle="{StaticResource GridTextBlockStyle}"
+                                    EditingElementStyle="{StaticResource GridEditingTextBoxStyle}"
                                     Binding="{Binding Folder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Header="打开程序路径"
                                     Width="*"
+                                    ElementStyle="{StaticResource GridTextBlockStyle}"
+                                    EditingElementStyle="{StaticResource GridEditingTextBoxStyle}"
                                     Binding="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DataGrid.Columns>
         </DataGrid>
@@ -98,27 +377,24 @@
                    HorizontalAlignment="Right">
             <Button MinWidth="100"
                     Margin="0,0,10,0"
-                    Padding="10,5"
                     Content="新增规则"
                     Click="AddRule_Click" />
             <Button MinWidth="100"
                     Margin="0,0,30,0"
-                    Padding="10,5"
+                    Style="{StaticResource DangerButtonStyle}"
                     Content="删除选中规则"
                     Click="DeleteSelectedRule_Click" />
             <Button MinWidth="100"
                     Margin="0,0,10,0"
-                    Padding="10,5"
                     Content="选择文件夹"
                     Click="ChooseRuleFolder_Click" />
             <Button MinWidth="100"
                     Margin="0,0,30,0"
-                    Padding="10,5"
                     Content="选择程序"
                     Click="ChooseRuleProgram_Click" />
             <Button MinWidth="100"
                     Margin="0"
-                    Padding="10,5"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     Content="保存配置"
                     Click="SaveConfig_Click" />
         </WrapPanel>
