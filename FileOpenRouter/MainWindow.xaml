@@ -10,29 +10,20 @@
         FontFamily="Microsoft YaHei UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
-        Background="{DynamicResource PageBrush}"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <SolidColorBrush x:Key="PageBrush" Color="#F6F8FA"/>
-        <SolidColorBrush x:Key="PanelBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+        <SolidColorBrush x:Key="PanelBrush" Color="#E8FFFFFF"/>
         <SolidColorBrush x:Key="PrimaryButtonTextBrush" Color="#FFFFFF"/>
-        <SolidColorBrush x:Key="HighLightBrush" Color="#EAF2F8"/>
-        <SolidColorBrush x:Key="HighLightBorderBrush" Color="#D8E7F3"/>
-        <SolidColorBrush x:Key="AccentBrush" Color="#2563EB"/>
-        <SolidColorBrush x:Key="AccentHoverBrush" Color="#1D4ED8"/>
-        <SolidColorBrush x:Key="AccentPressedBrush" Color="#1E40AF"/>
-        <SolidColorBrush x:Key="AccentSoftBrush" Color="#DBEAFE"/>
-        <SolidColorBrush x:Key="DangerBrush" Color="#C2410C"/>
-        <SolidColorBrush x:Key="DangerSoftBrush" Color="#FFF1F2"/>
-        <SolidColorBrush x:Key="DangerBorderBrush" Color="#FED7AA"/>
-        <SolidColorBrush x:Key="DangerPressedBrush" Color="#FFE4E6"/>
-        <SolidColorBrush x:Key="TextBrush" Color="#1F2937"/>
-        <SolidColorBrush x:Key="MutedTextBrush" Color="#4B5563"/>
-        <SolidColorBrush x:Key="ControlBorderBrush" Color="#D0D7DE"/>
-        <SolidColorBrush x:Key="ControlHoverBrush" Color="#F1F5F9"/>
-        <SolidColorBrush x:Key="GridHeaderBrush" Color="#F1F5F9"/>
-        <SolidColorBrush x:Key="GridAlternateRowBrush" Color="#FAFBFC"/>
-        <SolidColorBrush x:Key="GridLineBrush" Color="#E5E7EB"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#2F6FED"/>
+        <SolidColorBrush x:Key="AccentHoverBrush" Color="#275FD0"/>
+        <SolidColorBrush x:Key="AccentSoftBrush" Color="#E8F1FF"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#D92D20"/>
+        <SolidColorBrush x:Key="DangerSoftBrush" Color="#FFF5F5"/>
+        <SolidColorBrush x:Key="DangerBorderBrush" Color="#FECACA"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#182033"/>
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#566274"/>
+        <SolidColorBrush x:Key="ControlBorderBrush" Color="#D7DEE8"/>
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -63,7 +54,7 @@
                                 <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource ControlHoverBrush}" />
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentSoftBrush}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.55" />
@@ -96,7 +87,7 @@
                                 <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentHoverBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentHoverBrush}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.55" />
@@ -128,7 +119,7 @@
                                 <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource DangerPressedBrush}" />
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource DangerSoftBrush}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.55" />
@@ -191,9 +182,9 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="RowHeight" Value="34" />
             <Setter Property="HeadersVisibility" Value="Column" />
-            <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource GridLineBrush}" />
-            <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource GridLineBrush}" />
-            <Setter Property="AlternatingRowBackground" Value="{DynamicResource GridAlternateRowBrush}" />
+            <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource ControlBorderBrush}" />
+            <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource ControlBorderBrush}" />
+            <Setter Property="AlternatingRowBackground" Value="{DynamicResource PanelBrush}" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -262,8 +253,8 @@
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="MinHeight" Value="32" />
             <Setter Property="Padding" Value="10,0" />
-            <Setter Property="Background" Value="{DynamicResource GridHeaderBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource GridLineBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
@@ -282,7 +273,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Margin="10">
+    <Grid Margin="10,2,10,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -291,8 +282,8 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0"
-                Background="{DynamicResource HighLightBrush}"
-                BorderBrush="{DynamicResource HighLightBorderBrush}"
+                Background="{DynamicResource PanelBrush}"
+                BorderBrush="{DynamicResource ControlBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="8"
                 Padding="8,8,8,2"

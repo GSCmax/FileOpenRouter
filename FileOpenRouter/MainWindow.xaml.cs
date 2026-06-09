@@ -20,6 +20,7 @@ namespace FileOpenRouter
         public MainWindow()
         {
             InitializeComponent();
+            WindowBackdropHelper.Apply(this);
             Title = "文件打开路由器 " + ConfigService.GetConfigPath();
             LoadConfigToView();
         }
