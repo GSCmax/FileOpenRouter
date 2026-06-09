@@ -30,7 +30,7 @@ namespace FileOpenRouter.Services
                 return Fail("文件不存在：" + normalizedFilePath);
             }
 
-            if (config.Rules != null)
+            if (!IsShiftPressed() && config.Rules != null)
             {
                 foreach (var rule in config.Rules
                     .Where(IsUsableRule)
@@ -54,6 +54,11 @@ namespace FileOpenRouter.Services
             }
 
             return StartProgram(config.FallbackProgram, normalizedFilePath, null);
+        }
+
+        private static bool IsShiftPressed()
+        {
+            return (System.Windows.Forms.Control.ModifierKeys & System.Windows.Forms.Keys.Shift) == System.Windows.Forms.Keys.Shift;
         }
 
         private static bool IsUsableRule(RouteRule rule)
