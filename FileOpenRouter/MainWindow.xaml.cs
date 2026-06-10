@@ -28,6 +28,18 @@ namespace FileOpenRouter
             LoadConfigToView();
         }
 
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (InfoTextBlock.Visibility == Visibility.Visible)
+            {
+                InfoTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                InfoTextBlock.Visibility = Visibility.Visible;
+            }
+        }
+
         private void AddRule_Click(object sender, RoutedEventArgs e)
         {
             var rule = new RouteRule

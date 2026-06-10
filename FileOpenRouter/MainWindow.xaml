@@ -25,6 +25,7 @@
         <SolidColorBrush x:Key="MutedTextBrush" Color="#566274"/>
         <SolidColorBrush x:Key="ControlBorderBrush" Color="#D7DEE8"/>
         <local:RoundedClipConverter x:Key="RoundedClipConverter" />
+        <Geometry x:Key="InfoGeometry">M505.6512 39.0144c-261.2224 3.4816-470.1184 218.112-466.6368 479.4368 3.4816 261.12 218.112 470.1184 479.3344 466.6368 261.2224-3.4816 470.1184-218.112 466.7392-479.3344C981.504 244.4288 766.8736 35.5328 505.6512 39.0144zM558.08 196.608c48.128 0 62.2592 27.9552 62.2592 59.8016 0 39.8336-31.9488 76.6976-86.3232 76.6976-45.568 0-67.1744-22.9376-65.9456-60.8256C468.0704 240.4352 494.7968 196.608 558.08 196.608zM434.7904 807.6288c-32.8704 0-56.9344-19.968-33.8944-107.6224l37.6832-155.5456c6.5536-24.8832 7.68-34.9184 0-34.9184-9.8304 0-52.5312 17.2032-77.7216 34.2016l-16.384-26.9312c79.9744-66.7648 171.8272-105.8816 211.2512-105.8816 32.8704 0 38.2976 38.912 21.9136 98.6112l-43.2128 163.5328c-7.68 28.8768-4.4032 38.912 3.2768 38.912 9.9328 0 42.1888-11.9808 73.9328-36.9664l18.6368 24.8832C552.5504 777.728 467.6608 807.6288 434.7904 807.6288z</Geometry>
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -94,6 +95,24 @@
             <Setter Property="Background" Value="{DynamicResource DangerSoftBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource DangerBrush}" />
+        </Style>
+
+        <Style x:Key="InfoButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="9">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="TextBox">
@@ -259,12 +278,26 @@
                 Padding="8,8,8,2"
                 Margin="0,0,0,10">
             <StackPanel>
-                <TextBlock FontSize="18"
-                           FontWeight="SemiBold"
-                           Margin="0,0,0,8"
-                           Foreground="{DynamicResource TextBrush}"
-                           Text="文件打开方式路由器" />
-                <TextBlock TextWrapping="Wrap"
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,8">
+                    <TextBlock FontSize="18"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextBrush}"
+                               Text="文件打开方式路由器" />
+                    <Button Margin="8,1,0,0"
+                            BorderThickness="0"
+                            Padding="0"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Width="18" MinHeight="18"
+                            Click="InfoButton_Click">
+                        <Path Data="{StaticResource InfoGeometry}"
+                              Fill="{DynamicResource TextBrush}"
+                              Stretch="Uniform" />
+                    </Button>
+                </StackPanel>
+                <TextBlock x:Name="InfoTextBlock"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed"
                            Foreground="{DynamicResource MutedTextBrush}"
                            LineHeight="23">
                     <Run Text="1. 本程序不是解压软件、阅读器或编辑器，而是“打开方式路由器”，它只负责判断文件所在目录，并调用你配置的外部程序。" />
