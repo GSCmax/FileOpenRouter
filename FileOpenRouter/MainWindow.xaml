@@ -192,69 +192,64 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGrid">
                         <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="8"
                                 SnapsToDevicePixels="True">
-                            <Grid>
-                                <ScrollViewer x:Name="DG_ScrollViewer"
-                                              Focusable="False">
-                                    <ScrollViewer.Clip>
-                                        <MultiBinding Converter="{StaticResource RoundedClipConverter}"
-                                                      ConverterParameter="8">
-                                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
-                                                     Path="ActualWidth" />
-                                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
-                                                     Path="ActualHeight" />
-                                        </MultiBinding>
-                                    </ScrollViewer.Clip>
-                                    <ScrollViewer.Template>
-                                        <ControlTemplate TargetType="ScrollViewer">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
+                            <ScrollViewer x:Name="DG_ScrollViewer"
+                                          Focusable="False">
+                                <ScrollViewer.Clip>
+                                    <MultiBinding Converter="{StaticResource RoundedClipConverter}"
+                                                  ConverterParameter="7">
+                                        <Binding ElementName="DG_ScrollViewer"
+                                                 Path="ActualWidth" />
+                                        <Binding ElementName="DG_ScrollViewer"
+                                                 Path="ActualHeight" />
+                                    </MultiBinding>
+                                </ScrollViewer.Clip>
+                                <ScrollViewer.Template>
+                                    <ControlTemplate TargetType="ScrollViewer">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
-                                                <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
-                                                                                Grid.Column="0" />
-                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
-                                                                        Grid.Row="1"
-                                                                        Grid.Column="0"
-                                                                        CanContentScroll="{TemplateBinding CanContentScroll}"
-                                                                        Content="{TemplateBinding Content}"
-                                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                        ContentStringFormat="{TemplateBinding ContentStringFormat}" />
-                                                <ScrollBar x:Name="PART_VerticalScrollBar"
-                                                           Grid.Row="1"
-                                                           Grid.Column="1"
-                                                           Maximum="{TemplateBinding ScrollableHeight}"
-                                                           Orientation="Vertical"
-                                                           ViewportSize="{TemplateBinding ViewportHeight}"
-                                                           Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                           Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                                                <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                                           Grid.Row="2"
-                                                           Grid.Column="0"
-                                                           Maximum="{TemplateBinding ScrollableWidth}"
-                                                           Orientation="Horizontal"
-                                                           ViewportSize="{TemplateBinding ViewportWidth}"
-                                                           Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                           Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </ScrollViewer.Template>
-                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                </ScrollViewer>
-                                <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="8"
-                                        IsHitTestVisible="False"
-                                        SnapsToDevicePixels="True" />
-                            </Grid>
+                                            <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
+                                                                            Grid.Column="0" />
+                                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                                    Grid.Row="1"
+                                                                    Grid.Column="0"
+                                                                    CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                                    Content="{TemplateBinding Content}"
+                                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                    ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                                       Orientation="Vertical"
+                                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                                       Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                                            <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                                       Grid.Row="2"
+                                                       Grid.Column="0"
+                                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                                       Orientation="Horizontal"
+                                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                                       Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ScrollViewer.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
