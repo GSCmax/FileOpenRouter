@@ -47,7 +47,7 @@ namespace FileOpenRouter
 
             if (GetWindowsBuildNumber() >= 22000)
             {
-                EnableWin11Backdrop(hwnd);
+                EnableWin11Backdrop(hwnd, DwmSystemBackdropType.MainWindow);
             }
             else
             {
@@ -55,14 +55,14 @@ namespace FileOpenRouter
             }
         }
 
-        private static void EnableWin11Backdrop(IntPtr hwnd)
+        private static void EnableWin11Backdrop(IntPtr hwnd, DwmSystemBackdropType dwmSystemBackdrop)
         {
             ExtendFrameIntoClientArea(hwnd);
 
             var darkMode = 0;
             DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref darkMode, sizeof(int));
 
-            var backdrop = (int)DwmSystemBackdropType.MainWindow;
+            var backdrop = (int)dwmSystemBackdrop;
             var result = DwmSetWindowAttribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE, ref backdrop, sizeof(int));
             if (result != 0)
             {
