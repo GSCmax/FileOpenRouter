@@ -3,9 +3,12 @@ using FileOpenRouter.Services;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 using WinForms = System.Windows.Forms;
 
 namespace FileOpenRouter
@@ -187,6 +190,34 @@ namespace FileOpenRouter
         private static void ShowError(string message)
         {
             MessageBox.Show(message, "FileOpenRouter", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    public sealed class RoundedClipConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values.Length < 2 ||
+                !(values[0] is double width) ||
+                !(values[1] is double height) ||
+                width <= 0 ||
+                height <= 0)
+            {
+                return Geometry.Empty;
+            }
+
+            var radius = 0d;
+            if (parameter != null)
+            {
+                double.TryParse(parameter.ToString(), NumberStyles.Float, CultureInfo.InvariantCulture, out radius);
+            }
+
+            return new RectangleGeometry(new Rect(0, 0, width, height), radius, radius);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }
