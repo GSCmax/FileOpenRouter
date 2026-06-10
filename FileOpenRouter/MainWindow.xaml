@@ -34,7 +34,7 @@
             <Style.Resources>
                 <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#E8FFFFFF" />
                 <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="#2F6FED" />
-                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#E8F1FF" />
+                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#DCEBFF" />
             </Style.Resources>
             <Setter Property="MinHeight" Value="32" />
             <Setter Property="Padding" Value="3" />
@@ -76,7 +76,7 @@
             <Style.Resources>
                 <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#275FD0" />
                 <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="#275FD0" />
-                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#275FD0" />
+                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#1F4FB5" />
             </Style.Resources>
             <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
@@ -89,7 +89,7 @@
             <Style.Resources>
                 <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#FFF5F5" />
                 <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="#D92D20" />
-                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#FEE2E2" />
+                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#FECACA" />
             </Style.Resources>
             <Setter Property="Background" Value="{DynamicResource DangerSoftBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
