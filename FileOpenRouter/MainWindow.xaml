@@ -252,6 +252,7 @@
 
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="MinHeight" Value="32" />
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="Padding" Value="10,0" />
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}" />
