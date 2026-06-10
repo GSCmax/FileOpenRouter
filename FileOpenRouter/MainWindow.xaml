@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Height="700"
-        Width="1220"
+        Width="1040"
         FontSize="14"
         FontFamily="Microsoft YaHei UI"
         UseLayoutRounding="True"
