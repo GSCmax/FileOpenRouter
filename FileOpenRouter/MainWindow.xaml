@@ -33,6 +33,7 @@
 
         <Style TargetType="Button">
             <Style.Resources>
+                <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>
                 <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#E8FFFFFF" />
                 <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="#2F6FED" />
                 <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#DCEBFF" />
@@ -51,7 +52,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
+                                CornerRadius="{DynamicResource ButtonCornerRadius}">
                             <ContentPresenter Margin="{TemplateBinding Padding}"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center" />
@@ -98,21 +99,20 @@
         </Style>
 
         <Style x:Key="InfoButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="ButtonBorder"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="9">
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Style.Resources>
+                <CornerRadius x:Key="ButtonCornerRadius">9</CornerRadius>
+                <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#E8F1FF" />
+                <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="Transparent" />
+                <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#DCEBFF" />
+            </Style.Resources>
+            <Setter Property="MinHeight" Value="18" />
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         </Style>
 
         <Style TargetType="TextBox">
@@ -285,13 +285,10 @@
                                Foreground="{DynamicResource TextBrush}"
                                Text="文件打开方式路由器" />
                     <Button Margin="8,1,0,0"
-                            BorderThickness="0"
-                            Padding="0"
                             Style="{StaticResource InfoButtonStyle}"
-                            Width="18" MinHeight="18"
                             Click="InfoButton_Click">
                         <Path Data="{StaticResource InfoGeometry}"
-                              Fill="{DynamicResource TextBrush}"
+                              Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
                               Stretch="Uniform" />
                     </Button>
                 </StackPanel>
